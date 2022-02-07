@@ -1,5 +1,7 @@
 import requests
 
+from time import sleep
+
 
 class ZoomOut(Exception):
     def __init__(self, message="Zoom is not in (0, 17) range"):
@@ -15,7 +17,7 @@ class CoordOut(Exception):
 
 class Maps:
     def __init__(self):
-        self.coords = (37.620070, 55.753630)
+        self.coords = [37.620070, 55.753630]
         self.zoom = 10
         self.size = 541, 381
         self.layer = 'map'
@@ -77,9 +79,14 @@ class Maps:
 
     def edit_layer(self):
         self.layer = self.lst_layer[(self.lst_layer.index(self.layer) + 1) % len(self.lst_layer)]
+        self.get_img()
 
-
+times = 2
 map = Maps()
-map.get_img()
+# map.get_img()
+# sleep(times)
+map.move_up()
+map.zoom_up()
+
 # map.zoom_down()
 
